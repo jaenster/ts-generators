@@ -18,6 +18,13 @@ export class GeneratorFrom<T> extends EventTS {
     }
   }
 
+  stats() {
+    return {
+      working: this.toBeCanceled.size,
+      subscriptions: this.subscriptions.size,
+    }
+  }
+
   async close() {
     this.toBeCanceled.forEach(queue => queue.resolve(undefined));
     while (this.subscriptions.size) {
